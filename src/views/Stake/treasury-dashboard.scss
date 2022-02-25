@@ -1,0 +1,187 @@
+#stake-view {
+  overflow-y: hidden;
+  overflow-x: hidden;
+  height: 100%;
+  // width: 100%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .ohm-card {
+    max-width: unset !important;
+    width: 100%;
+    margin: auto;
+    .card-header {
+      margin-bottom: 1rem;
+    }
+    &.ohm-chart-card {
+      .chart-card-header {
+        padding: 0px 20px !important;
+        min-width: 300px;
+      }
+      height: 355px;
+    }
+  }
+  .hero-metrics {
+    width: 100%;
+    margin-bottom: 23px;
+    text-align: center;
+    .ohm-card {
+      max-width: unset !important;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      h5 {
+        font-weight: bold;
+      }
+    }
+  }
+  .data-grid {
+    overflow: hidden;
+  }
+
+  .buy-pannel {
+    background-image: url("/assets/images/img_buy_dlg_backgournd.webp");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    min-width: 450px;
+    min-height: 350px;
+    position: relative;
+    margin-top: 70px;
+    
+    .title1 {
+      padding-top: 50px;
+      font-size: 2rem;
+      font-style: italic;
+      font-weight: 900;
+      font-family: fangsong;
+    }
+
+    .sub-title {
+      margin-top: 15px;
+    }
+
+    .sub-title-content {
+      margin-top: 10px;
+      color: yellow;
+    }
+
+    .button-group {
+      margin-top: 20px;
+      color: yellow;
+      .left-button {
+        padding: 0px;
+        padding-left: 20px;
+        margin-left: 20px;
+        width: 100%;
+      }
+
+      .right-button {
+        padding-right: 20px;
+        margin-left: -15px;
+        width: 100%;
+      }
+    }
+
+    
+    .nft-item-description-title {
+      padding-left: 55px;
+    }
+
+    .nft-item-description-value {
+      padding-right: 55px;
+    }
+  }
+
+  .nft-list-pannel {
+    margin-top: 50px;
+
+    .nft-item {
+      background-image: url("/assets/images/nft_item_background.webp");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 470px;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      /* position: relative; */
+      .nft-list-item-image {
+        width: 80%;
+        display: flex;
+        min-height: 100px;
+        background-size: contain;
+      }
+
+      .nft-item-description-title {
+        padding-left: 55px;
+      }
+
+      .nft-item-description-value {
+        padding-right: 55px;
+      }
+    }
+
+    .MuiTypography-h6 {
+      line-height: 1.1;
+    }
+    
+  }
+
+}
+
+.smaller {
+  .ohm-card {
+    width: 97%;
+  }
+  .hero-metrics .ohm-card {
+    > .MuiBox-root {
+      flex-direction: column;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    div.metric {
+      text-align: left !important;
+    }
+  }
+}
+
+.mobile {
+  div.metric {
+    white-space: nowrap;
+    min-width: 30% !important;
+    max-width: 60%;
+    text-align: left !important;
+    &.market,
+    &.price,
+    &.wsoprice,
+    &.circ,
+    &.bpo,
+    &.index {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+}
+
+.very-small {
+  .hero-metrics .ohm-card {
+    > .MuiBox-root {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
