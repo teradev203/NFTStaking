@@ -88,7 +88,7 @@ const commonSettings = {
     },
     MuiPaper: {
       root: {
-        backdropFilter: "blur(33px)",
+        backdropFilter: "blur(0px)",
         "&.ohm-card": {
           borderRadius: "10px",
           maxWidth: "1200px",
@@ -147,7 +147,7 @@ const commonSettings = {
       },
       paper: {
         width: "inherit",
-        // backdropFilter: "blur(33px)",
+        // backdropFilter: "blur(0px)",
         backgroundColor: "inherit",
         padding: 0,
         zIndex: 7,

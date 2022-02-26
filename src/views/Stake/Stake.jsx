@@ -5,13 +5,15 @@ import { useWeb3Context } from "../../hooks";
 import { Paper, Grid, Typography, Box, Zoom, Container, useMediaQuery } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import { useSelector } from "react-redux";
-import imgBNBBuyButton from '../../assets/images/img_bnb_buy_btn.webp';
-import imgTokenBuyButton from '../../assets/images/img_token_buy_btn.webp';
+import imgStakeButton from '../../assets/images/img_stake_btn.png';
+import imgUnStakeButton from '../../assets/images/img_unstake_btn.png';
+import imgCliamButton from '../../assets/images/img_claim_btn.png';
+import imgApproveButton from '../../assets/images/img_approve_btn.png';
 import { trim, formatCurrency } from "../../helpers";
 import { mintNFTWithBNB } from "../../slices/NFT";
 
 import { useTheme } from "@material-ui/core/styles";
-import "./treasury-dashboard.scss";
+import "./stake.scss";
 
 function Stake() {
   const [data, setData] = useState(null);
@@ -94,8 +96,8 @@ function Stake() {
         <Zoom in={true}>
           <Paper className="ohm-card">
             <Grid container spacing={2} className="data-grid" alignContent="center">
-              <Grid item lg={3} md={2} sm={1} xs={0} />
-              <Grid item lg={6} md={8} sm={10} xs={12}>
+              <Grid item lg={2} md={2} sm={1} xs={0} />
+              <Grid item lg={8} md={8} sm={10} xs={12}>
                 <div className="buy-pannel">
                   <Typography variant="h4" className="title1" align={'center'}>
                     Token Staked Info
@@ -138,17 +140,18 @@ function Stake() {
                   </Grid>
                   <div className="button-group">
                     <Grid container spacing={2} className="data-grid" alignContent="center">
-                      <Grid item lg={6} md={6} sm={6} xs={6} >
-                        <img src={imgBNBBuyButton} className="left-button" onClick={onMintwithBNB} />
+                      <Grid item lg={1} md={1} sm={1} xs={1} />
+                      <Grid item lg={5} md={5} sm={5} xs={5} >
+                        <img src={imgStakeButton} className="left-button"/>
                       </Grid>
-                      <Grid item lg={6} md={6} sm={6} xs={6} >
-                        <img src={imgTokenBuyButton} className="right-button" />
+                      <Grid item lg={5} md={5} sm={5} xs={5} >
+                        <img src={imgCliamButton} className="right-button"/>
                       </Grid>
                     </Grid>
                   </div>
                 </div>
               </Grid>
-              <Grid item lg={3} md={2} sm={1} xs={0} />
+              <Grid item lg={2} md={2} sm={1} xs={0} />
             </Grid>
             <div className="nft-list-pannel">
               <Grid container spacing={2} className="data-grid" alignContent="center">
@@ -160,14 +163,14 @@ function Stake() {
                       <div className="nft-item">
                         <img src={"images/nft/nft_item_6.gif"} className="nft-list-item-image" />
                         <Grid container className="data-grid" alignContent="center">
-                          <Grid item lg={7} md={8} sm={6} xs={6}>
+                          <Grid item lg={6} md={6} sm={6} xs={6}>
                             <Typography variant="h6" className="nft-item-description-title" align={'left'}>
                               Name :
                             </Typography>
                           </Grid>
                           <Grid item lg={6} md={6} sm={6} xs={6}>
                             <Typography variant="h6" className="nft-item-description-value" align={'right'}>
-                              {"item.name"}
+                              {"Speed"}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -179,7 +182,7 @@ function Stake() {
                           </Grid>
                           <Grid item lg={6} md={6} sm={6} xs={6}>
                             <Typography variant="h6" className="nft-item-description-value" align={'right'}>
-                              {"item.rarity"}
+                              {"100"}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -191,7 +194,7 @@ function Stake() {
                           </Grid>
                           <Grid item lg={6} md={6} sm={6} xs={6}>
                             <Typography variant="h6" className="nft-item-description-value" align={'right'}>
-                              {"item.stakingMultiplier"}
+                              {"x1.25"}
                             </Typography>
                           </Grid>
                         </Grid>
@@ -203,7 +206,7 @@ function Stake() {
                           </Grid>
                           <Grid item lg={6} md={6} sm={6} xs={6}>
                             <Typography variant="h6" className="nft-item-description-value" align={'right'}>
-                              {"item.dropChance"}
+                              {"10"}
                             </Typography>
                           </Grid>
                         </Grid>

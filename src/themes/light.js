@@ -88,7 +88,7 @@ export const light = responsiveFontSizes(
             },
             "&.ohm-menu": {
               backgroundColor: lightTheme.menuBg,
-              backdropFilter: "blur(33px)",
+              backdropFilter: "blur(0px)",
             },
             "&.ohm-popover": {
               backgroundColor: lightTheme.popoverBg,

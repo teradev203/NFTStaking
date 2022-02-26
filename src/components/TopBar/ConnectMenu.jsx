@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Box, Button, SvgIcon, Typography, Popper, Paper, Divider, Link, Slide, Fade } from "@material-ui/core";
+import { NavLink } from "react-router-dom";
 import { ReactComponent as ArrowUpIcon } from "../../assets/icons/arrow-up.svg";
 import { ReactComponent as CaretDownIcon } from "../../assets/icons/caret-down.svg";
 import { useAddress, useWeb3Context } from "src/hooks/web3Context";
 import { shorten } from "../../helpers";
-import imgConnectButton from '../../assets/images/img_connect_btn.webp';
+import imgConnect from '../../assets/images/img_connect_btn.png';
+import imgDisConnect from '../../assets/images/img_disconnect_btn.png';
 import imgLogo from '../../assets/images/orbitinu logo.webp';
 
 function ConnectMenu({ theme }) {
@@ -68,59 +70,14 @@ function ConnectMenu({ theme }) {
       onMouseLeave={e => (pendingTransactions && pendingTransactions.length > 0 ? handleClick(e) : null)}
       className="connect-button-container"
     >
-      {/* <Button
-        className={buttonStyles}
-        variant="contained"
-        color="secondary"
-        size="large"
-        style={pendingTransactions.length > 0 ? { color: primaryColor } : {}}
-        onClick={clickFunc}
-        onMouseOver={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        key={1}
-      >
-        {buttonText}
-        {pendingTransactions.length > 0 && (
-          <Slide direction="left" in={isHovering} {...{ timeout: 333 }}>
-            <SvgIcon className="caret-down" component={CaretDownIcon} htmlColor={primaryColor} />
-          </Slide>
-        )}
-      </Button> */}
-      <img src={imgConnectButton} onClick={clickFunc} className="connect-button"/>
-      <Popper id={id} open={open} anchorEl={anchorEl} placement="bottom-end" transition>
-        {({ TransitionProps }) => {
-          return (
-            <Fade {...TransitionProps} timeout={100}>
-              <Paper className="ohm-menu" elevation={1}>
-                {pendingTransactions.map((x, i) => (
-                  <Box key={i} fullWidth>
-                    <Link key={x.txnHash} href={getEtherscanUrl(x.txnHash)} target="_blank" rel="noreferrer">
-                      <Button size="large" variant="contained" color="secondary" fullWidth>
-                        <Typography align="left">
-                          {x.text} <SvgIcon component={ArrowUpIcon} />
-                        </Typography>
-                      </Button>
-                    </Link>
-                  </Box>
-                ))}
-                <Box className="add-tokens">
-                  <Divider color="secondary" />
-                  <Button
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                    onClick={disconnect}
-                    style={{ marginBottom: "0px" }}
-                    fullWidth
-                  >
-                    <Typography>Disconnect</Typography>
-                  </Button>
-                </Box>
-              </Paper>
-            </Fade>
-          );
-        }}
-      </Popper>
+      <img src={!isConnected ? imgConnect : imgDisConnect} onClick={clickFunc} className="connect-button" />
+      {
+        isConnected ?
+          <Link href={`https://bscscan.io/address/${address}`} target="_blank">
+            {shorten(address)}
+          </Link> :
+          <></>
+      }
     </div>
   );
 }

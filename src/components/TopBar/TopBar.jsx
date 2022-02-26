@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
     //    justifyContent: "center",
     //    alignItems: "flex-end",
-    background: "#0009",
+    background: "#0001",
     backdropFilter: "none",
     zIndex: 10,
   },
@@ -84,7 +84,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
                   }}
                   className={`button-dapp-menu ${isActive ? "active" : ""}`}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="h5">
                     Mint
                   </Typography>
                 </Link>
@@ -99,7 +99,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
                   }}
                   className={`button-dapp-menu ${isActive ? "active" : ""}`}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="h5">
                     Staking
                   </Typography>
                 </Link>
@@ -114,7 +114,7 @@ function TopBar({ theme, toggleTheme, handleDrawerToggle }) {
                   }}
                   className={`button-dapp-menu ${isActive ? "active" : ""}`}
                 >
-                  <Typography variant="h6">
+                  <Typography variant="h5">
                     Marketplace
                   </Typography>
                 </Link>

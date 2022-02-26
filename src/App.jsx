@@ -16,7 +16,7 @@ import { calcBondDetails } from "./slices/BondSlice";
 import { loadAppDetails } from "./slices/AppSlice";
 import { loadAccountDetails, calculateUserBondDetails } from "./slices/AccountSlice";
 
-import {Stake, NFTMintPage } from "./views";
+import { Stake, NFTMintPage } from "./views";
 import Sidebar from "./components/Sidebar/Sidebar.jsx";
 import TopBar from "./components/TopBar/TopBar.jsx";
 import NavDrawer from "./components/Sidebar/NavDrawer.jsx";
@@ -202,6 +202,9 @@ function App() {
           )}
           <div >
             <Switch>
+              <Route exact path="/">
+                <Redirect to="mint" />
+              </Route>
               <Route exact path="/mint">
                 <NFTMintPage />
               </Route>

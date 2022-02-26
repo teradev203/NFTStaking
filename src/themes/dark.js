@@ -102,7 +102,7 @@ export const dark = responsiveFontSizes(
             },
             "&.ohm-menu": {
               backgroundColor: darkTheme.menuBg,
-              backdropFilter: "blur(33px)",
+              backdropFilter: "blur(0px)",
             },
             "&.ohm-popover": {
               backgroundColor: darkTheme.popoverBg,

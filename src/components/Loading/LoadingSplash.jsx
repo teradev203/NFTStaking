@@ -4,7 +4,7 @@ import "./loading.scss";
 
 function LoadingSplash() {
   return (
-    <Backdrop open={true} className="loading-splash" style={{ zIndex: 33, backdropFilter: "blur(33px)" }}>
+    <Backdrop open={true} className="loading-splash" style={{ zIndex: 33, backdropFilter: "blur(0px)" }}>
       <Container justify="center" align="center">
         <SvgIcon
           component={OlympusIcon}

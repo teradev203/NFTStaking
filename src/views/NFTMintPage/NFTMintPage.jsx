@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useWeb3Context } from "../../hooks";
@@ -8,10 +8,10 @@ import { useSelector } from "react-redux";
 import imgBNBBuyButton from '../../assets/images/img_bnb_buy_btn.webp';
 import imgTokenBuyButton from '../../assets/images/img_token_buy_btn.webp';
 import { trim, formatCurrency } from "../../helpers";
-import { mintNFTWithBNB} from "../../slices/NFT";
+import { mintNFTWithBNB, mintNFTWithOIM } from "../../slices/NFT";
 
 import { useTheme } from "@material-ui/core/styles";
-import "./treasury-dashboard.scss";
+import "./nft-mint-page.scss";
 
 function NFTMintPage() {
   const [data, setData] = useState(null);
@@ -23,6 +23,10 @@ function NFTMintPage() {
   const verySmallScreen = useMediaQuery("(max-width: 379px)");
   const dispatch = useDispatch();
   const { connect, address, provider, chainID, connected, hasCachedProvider } = useWeb3Context();
+  
+  const pendingTransactions = useSelector(state => {
+    return state.pendingTransactions;
+  });
   const staked = useSelector(state => {
     return state.app.Staked;
   });
@@ -30,45 +34,45 @@ function NFTMintPage() {
   const nftList = [
     {
       url: "images/nft/nft_item_1.gif",
-      name:'Valkyrie M81',
-      rarity:'Legendary',
-      stakingMultiplier:'x3',
-      dropChance:'5%'
+      name: 'Valkyrie M81',
+      rarity: 'Legendary',
+      stakingMultiplier: 'x3',
+      dropChance: '5%'
     },
     {
       url: "images/nft/nft_item_2.gif",
-      name:'Mauler',
-      rarity:'Super Rare',
-      stakingMultiplier:'X2',
-      dropChance:'7%'
+      name: 'Mauler',
+      rarity: 'Super Rare',
+      stakingMultiplier: 'X2',
+      dropChance: '7%'
     },
     {
       url: "images/nft/nft_item_3.gif",
-      name:'Cyanide',
-      rarity:'Rare',
-      stakingMultiplier:'X1.75',
-      dropChance:'8%'
+      name: 'Cyanide',
+      rarity: 'Rare',
+      stakingMultiplier: 'X1.75',
+      dropChance: '8%'
     },
     {
       url: "images/nft/nft_item_4.gif",
-      name:'Hussar',
-      rarity:'Epic',
-      stakingMultiplier:'X1.5',
-      dropChance:'10%'
+      name: 'Hussar',
+      rarity: 'Epic',
+      stakingMultiplier: 'X1.5',
+      dropChance: '10%'
     },
     {
       url: "images/nft/nft_item_5.gif",
-      name:'Mordred',
-      rarity:'Supreme',
-      stakingMultiplier:'X1.25',
-      dropChance:'30%'
+      name: 'Mordred',
+      rarity: 'Supreme',
+      stakingMultiplier: 'X1.25',
+      dropChance: '30%'
     },
     {
       url: "images/nft/nft_item_6.gif",
-      name:'Ardor',
-      rarity:'Common',
-      stakingMultiplier:'X1',
-      dropChance:'40%'
+      name: 'Ardor',
+      rarity: 'Common',
+      stakingMultiplier: 'X1',
+      dropChance: '40%'
     },
   ];
   const stakingAPY = useSelector(state => {
@@ -77,11 +81,36 @@ function NFTMintPage() {
 
   useEffect(() => {
   }, []);
-  
-  
+
+
   const onMintwithBNB = async action => {
     await dispatch(mintNFTWithBNB({ provider, address, networkID: chainID }));
   };
+
+  const onMintwithToken = async action => {
+    await dispatch(mintNFTWithOIM({ provider, address, networkID: chainID }));
+  };
+
+  const ButtonGroup = () => {
+    return <div className="button-group">
+      {
+        !(pendingTransactions && pendingTransactions.length > 0) ?
+          <Grid container spacing={2} className="data-grid" alignContent="center">
+            <Grid item lg={1} md={1} sm={1} xs={1} />
+            <Grid item lg={5} md={5} sm={5} xs={5} >
+              <img src={imgBNBBuyButton} className="left-button" onClick={onMintwithBNB} />
+            </Grid>
+            <Grid item lg={5} md={5} sm={5} xs={5} >
+              <img src={imgTokenBuyButton} className="right-button" onClick={onMintwithToken} />
+            </Grid>
+          </Grid> :
+          <Typography variant="h4" className="message" align={'center'}>
+            In progressing...
+          </Typography>
+      }
+
+    </div>
+  }
 
   return (
     <div id="treasury-dashboard-view" className={`${smallerScreen && "smaller"} ${verySmallScreen && "very-small"}`}>
@@ -94,8 +123,8 @@ function NFTMintPage() {
         <Zoom in={true}>
           <Paper className="ohm-card">
             <Grid container spacing={2} className="data-grid" alignContent="center">
-              <Grid item lg={3} md={2} sm={1} xs={0} />
-              <Grid item lg={6} md={8} sm={10} xs={12}>
+              <Grid item lg={2} md={2} sm={1} xs={0} />
+              <Grid item lg={8} md={8} sm={10} xs={12}>
                 <div className="buy-pannel">
                   <Typography variant="h4" className="title1" align={'center'}>
                     Welcome to OrbitInu
@@ -106,19 +135,10 @@ function NFTMintPage() {
                   <Typography variant="h6" className="sub-title-content" align={'center'}>
                     150,000,000 OIM81 OR 0.15 BNB
                   </Typography>
-                  <div className="button-group">
-                    <Grid container spacing={2} className="data-grid" alignContent="center">
-                      <Grid item lg={6} md={6} sm={6} xs={6} >
-                        <img src={imgBNBBuyButton} className="left-button" onClick={onMintwithBNB} />
-                      </Grid>
-                      <Grid item lg={6} md={6} sm={6} xs={6} >
-                        <img src={imgTokenBuyButton} className="right-button" />
-                      </Grid>
-                    </Grid>
-                  </div>
+                  <ButtonGroup />
                 </div>
               </Grid>
-              <Grid item lg={3} md={2} sm={1} xs={0} />
+              <Grid item lg={2} md={2} sm={1} xs={0} />
             </Grid>
             <div className="nft-list-pannel">
               <Grid container spacing={2} className="data-grid" alignContent="center">
@@ -128,11 +148,11 @@ function NFTMintPage() {
                     {
                       nftList.map(item => {
                         return (
-                          < Grid item lg={4} md={4} sm={6} xs={6} >
+                          < Grid item lg={4} md={4} sm={6} xs={6} style={{display:"flex", justifyContent:"center"}} >
                             <div className="nft-item">
                               <img src={item.url} className="nft-list-item-image" />
                               <Grid container className="data-grid" alignContent="center">
-                                <Grid item lg={7} md={8} sm={6} xs={6}>
+                                <Grid item lg={6} md={6} sm={6} xs={6}>
                                   <Typography variant="h6" className="nft-item-description-title" align={'left'}>
                                     Name :
                                   </Typography>
